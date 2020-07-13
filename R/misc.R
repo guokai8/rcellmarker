@@ -81,11 +81,12 @@ setAs(from = "cellResult", to = "data.frame", def = function(from){
     species = tolower(species)
     if(species=='human'){
         data(human)
-        dat <- human
+        dat <- humancells
     }else{
         data(mouse)
-        dat <- mouse
+        dat <- mousecells
     }
+    dat
 }
 
 #' reverse List

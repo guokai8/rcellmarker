@@ -10,8 +10,8 @@
 ##' }
 ##' @examples
 ##' data(human)
-##' head(human)
-"human"
+##' head(humancells)
+"humancells"
 
 ##' @title mouse
 ##' @description mouse cell markers for cell type identification
@@ -25,5 +25,5 @@
 ##' }
 ##' @examples
 ##' data(mouse)
-##' head(mouse)
-"mouse"
+##' head(mousecells)
+"mousecells"

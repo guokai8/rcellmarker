@@ -1,5 +1,5 @@
 # rcellmarker
-# richR <a href="https://travis-ci.org/guokai8/rcellmarker"><img src="https://travis-ci.org/guokai8/rcellmarker.svg" alt="Build status"></a>  [![Project Status:](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)  [![](https://img.shields.io/badge/devel%20version-0.0.4-green.svg)](https://github.com/guokai8/rcellmarker) 
+# richR <a href="https://travis-ci.org/guokai8/rcellmarker"><img src="https://travis-ci.org/guokai8/rcellmarker.svg" alt="Build status"></a>  [![Project Status:](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)  [![](https://img.shields.io/badge/devel%20version-0.0.5-green.svg)](https://github.com/guokai8/rcellmarker) 
 ## Description
 _rcellmarker_ provides method to identify cell type based on single cell sequencing data.  Now only support human and mouse.
 ## Installation

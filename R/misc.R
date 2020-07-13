@@ -100,7 +100,6 @@ as.data.frame.cellResult <- function(x, ...) {
 }
 
 #' reverse List
-#' @method reverseList List
 #' @param lhs list with names
 #' @export
 #' @author Kai Guo

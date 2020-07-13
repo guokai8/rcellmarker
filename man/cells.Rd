@@ -29,17 +29,17 @@ cells(
 
 \item{pvalue}{cutoff pvalue}
 
-\item{minSize}{minimal number of genes included in significant terms}
+\item{minSize}{minimal number of genes included in significant cell type}
 
-\item{maxSize}{maximum number of genes included in significant terms}
+\item{maxSize}{maximum number of genes included in significant cell type}
 
-\item{keepRich}{keep terms with rich factor value equal 1 or not (default: TRUE)}
+\item{keepRich}{keep cell type with rich factor value equal 1 or not (default: TRUE)}
 
 \item{padj.method}{pvalue adjust method(default:"BH")}
 
 \item{sep}{character string used to separate the genes when concatenating}
 
-\item{sepcies}{sepcies name}
+\item{sepcies}{species name}
 }
 \description{
 cells function for cell type identification

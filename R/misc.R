@@ -64,8 +64,9 @@ getdetail<-function(x,y,sep){
         y$gene=rownames(y)
     }
     sep = x@sep
+    result <- x@result
     gene<-strsplit(as.vector(x$GeneID),split=sep)
-    gened<-data.frame("cellType"=rep(result$Term,times=unlist(lapply(gene,length))),
+    gened<-data.frame("cellType"=rep(result$cellType,times=unlist(lapply(gene,length))),
                       "GeneID"=unlist(gene),row.names=NULL,
                       "Pvalue"=rep(result$Pvalue,times=unlist(lapply(gene,length))),
                       "Padj"=rep(result$Padj,times=unlist(lapply(gene,length)))

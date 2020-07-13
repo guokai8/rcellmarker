@@ -21,6 +21,8 @@ cells(
 \arguments{
 \item{x}{vector contains gene names}
 
+\item{species}{species name}
+
 \item{keytype}{keytype for input genes}
 
 \item{tissue}{tissue type (default NULL)}
@@ -38,8 +40,6 @@ cells(
 \item{padj.method}{pvalue adjust method(default:"BH")}
 
 \item{sep}{character string used to separate the genes when concatenating}
-
-\item{sepcies}{species name}
 }
 \description{
 cells function for cell type identification

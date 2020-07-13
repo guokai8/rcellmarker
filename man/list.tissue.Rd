@@ -6,6 +6,9 @@
 \usage{
 list.tissue(species = "human")
 }
+\arguments{
+\item{species}{species name}
+}
 \description{
 show support tissues
 }

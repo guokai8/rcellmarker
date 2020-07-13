@@ -1,7 +1,9 @@
 #' cells function for cell type identification 
 #' @importFrom magrittr %>%
+#' @importFrom stats p.adjust
+#' @importFrom methods new
 #' @param x vector contains gene names 
-#' @param sepcies species name
+#' @param species species name
 #' @param tissue tissue type (default NULL)
 #' @param pvalue cutoff pvalue
 #' @param padj cutoff p adjust value
@@ -75,7 +77,8 @@ cells<-function(x,species='human',keytype="SYMBOL", tissue = NULL, padj=0.05, pv
     return(result)
 }
 #' show support tissues
-#' @param species
+#' @importFrom utils data
+#' @param species species name
 #' @export
 #' @author Kai Guo
 list.tissue <- function(species='human'){

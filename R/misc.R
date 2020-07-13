@@ -51,32 +51,39 @@ result.cellResult<-function(x){
     as.data.frame(x@result)
 }
 ##' @importFrom dplyr left_join
-getdetail<-function(rese,resd,sep){
-    if(!is.data.frame(resd)){
-        resd=data.frame(gene=resd)
+##' @param x cellResult object from cells function
+##' @param y  a data frame with gene name and other information
+##' @param sep cellResult object sep
+##' @author Kai Guo
+##' @export
+getdetail<-function(x,y,sep){
+    if(!is.data.frame(y)){
+        y=data.frame(gene=y)
     }
-    if(!("gene"%in%colnames(resd))){
-        resd$gene=rownames(resd)
+    if(!("gene"%in%colnames(y))){
+        y$gene=rownames(y)
     }
-    gene<-strsplit(as.vector(rese$GeneID),split=sep)
-    names(gene)<-rese$Annot
-    gened<-data.frame("TERM"=rep(names(gene),times=unlist(lapply(gene,length))),
-                      "Annot"=rep(resultFis$Term,times=unlist(lapply(gene,length))),
+    sep = x@sep
+    gene<-strsplit(as.vector(x$GeneID),split=sep)
+    gened<-data.frame("cellType"=rep(resultFis$Term,times=unlist(lapply(gene,length))),
                       "GeneID"=unlist(gene),row.names=NULL,
                       "Pvalue"=rep(resultFis$Pvalue,times=unlist(lapply(gene,length))),
                       "Padj"=rep(resultFis$Padj,times=unlist(lapply(gene,length)))
     )
     gened$GeneID<-as.character(gened$GeneID)
-    res<-left_join(gened,resd,by=c("GeneID"="gene"))
+    res<-left_join(gened,y,by=c("GeneID"="gene"))
     return(res)
 }
-##'
-##'
+##' Functions to coerce cellResult to data.frame
+##' @param from cellResult
 setAs(from = "cellResult", to = "data.frame", def = function(from){
     resultFis <- from@result
     resultFis
 })
 
+#' load the data based on the species name
+#' @param species species name
+#' @author Kai Guo
 .getdata <-function(species){
     species = tolower(species)
     if(species=='human'){

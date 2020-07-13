@@ -1,0 +1,21 @@
+Package: rcellmarker
+Type: Package
+Title: Identify cell type based on cell markers
+Version: 0.0.3
+Date: 2020-07-12
+Author: Kai Guo
+Maintainer: Kai Guo <guokai8@gmail.com>
+Description: Using over representation analysis to identify cell type based on 
+            cell markers for human and mouse single cell sequencing
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.5),
+         dplyr,
+         magrittr,
+         utils
+LinkingTo: Rcpp
+Suggests:
+    knitr,
+    testthat,
+    rmarkdown
+RoxygenNote: 7.1.0
+biocViews:

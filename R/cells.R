@@ -74,3 +74,16 @@ cells<-function(x,species='human',keytype="SYMBOL", tissue = NULL, padj=0.05, pv
     )
     return(result)
 }
+#' show support tissues
+#' @param species
+#' @export
+#' @author Kai Guo
+list.tissue <- function(species='human'){
+    dat <- .getdata(species=species)
+    data.frame('Tissue'=sort(unique(humancells$tissueType)))
+}
+
+
+
+
+

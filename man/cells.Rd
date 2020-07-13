@@ -2,7 +2,7 @@
 % Please edit documentation in R/cells.R
 \name{cells}
 \alias{cells}
-\title{Enrichment analysis for cell type identification}
+\title{cells function for cell type identification}
 \usage{
 cells(
   x,
@@ -42,7 +42,7 @@ cells(
 \item{sepcies}{sepcies name}
 }
 \description{
-Enrichment analysis for cell type identification
+cells function for cell type identification
 }
 \author{
 Kai Guo

@@ -14,4 +14,6 @@ library(rcellmarker)
 gene=sample(unique(human$SYMBOL),20)
 res<-cells(gene,species = "human",keytype ="SYMBOL")
 head(res)
+#if you have the result include the cluster information, padj value and avg_logFC named as "single"
+head(getdetail(res,single))
 ```       

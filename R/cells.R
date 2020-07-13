@@ -1,5 +1,4 @@
-#' Enrichment analysis for cell type identification 
-#' @importFrom dplyr filter_
+#' cells function for cell type identification 
 #' @importFrom magrittr %>%
 #' @param x vector contains gene names 
 #' @param sepcies sepcies name
@@ -47,11 +46,11 @@ cells<-function(x,species='human',keytype="SYMBOL", tissue = NULL, padj=0.05, pv
         resultFis<-resultFis[resultFis$Padj<padj,]
         pvalue <- numeric()
     }
-    resultFis<-resultFis%>%filter_(~Significant<=maxSize)
+    resultFis<-resultFis[resultFis$Significant<=maxSize,]
     if(keepRich==FALSE){
-        resultFis<-resultFis%>%filter_(~Significant>=minSize)
+        resultFis<-resultFis[resultFis$Significant>=minSize,]
     }else{
-        resultFis<-resultFis%>%filter_(~Significant>=minSize|(~Annotated/~Significant)==1)
+        resultFis<-resultFis[resultFis$Significant>=minSize|(resultFis$Annotated/resultFis$Significant)==1,]
     }
     rownames(resultFis)<-resultFis$cellType
     gene<-strsplit(as.vector(resultFis$GeneID),split=sep)

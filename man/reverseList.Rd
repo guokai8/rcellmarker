@@ -4,7 +4,7 @@
 \alias{reverseList}
 \title{reverse List}
 \usage{
-reverseList(lhs)
+\method{reverseList}{List}(lhs)
 }
 \arguments{
 \item{lhs}{list with names}

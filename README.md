@@ -18,7 +18,7 @@ head(res)
 head(getdetail(res,single))
 ```   
 ## Note
-The _rcellmarker_ package use the cellMarker and PanglaoDB database as the reference with ID cleaning and merging. We also add information from the newest public papers from NCBI. The package is still under development.
+The _rcellmarker_ package use the __CellMarker__ and __PanglaoDB__ database as the reference with ID cleaning and merging. We also add information from the newest public papers from NCBI. The package is still under development.
 
 ## Contact information
 

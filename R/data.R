@@ -9,6 +9,7 @@
 ##' \item{REFSEQ}{REFSEQ gene IDs}
 ##' }
 ##' @examples
+##' data(human)
 ##' head(human)
 "human"
 
@@ -23,5 +24,6 @@
 ##' \item{REFSEQ}{REFSEQ gene IDs}
 ##' }
 ##' @examples
+##' data(mouse)
 ##' head(mouse)
 "mouse"

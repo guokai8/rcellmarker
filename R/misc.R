@@ -40,6 +40,7 @@ dim.cellResult <- function(x) {
 `$.cellResult` <-  function(x, name) {
     x@result[, name]
 }
+
 ##' @method detail cellResult
 ##' @export
 detail.cellResult<-function(x){
@@ -50,6 +51,7 @@ detail.cellResult<-function(x){
 result.cellResult<-function(x){
     as.data.frame(x@result)
 }
+##' get detail from with cellResult and combine with other information
 ##' @importFrom dplyr left_join
 ##' @param x cellResult object from cells function
 ##' @param y  a data frame with gene name and other information
@@ -76,11 +78,11 @@ getdetail<-function(x,y,sep){
     return(res)
 }
 ##' Functions to coerce cellResult to data.frame
-##' @param from cellResult
-setAs(from = "cellResult", to = "data.frame", def = function(from){
-    resultFis <- from@result
-    resultFis
-})
+##' @method as.data.frame cellResult
+##' @export
+as.data.frame.cellResult <- function(x, ...) {
+    as.data.frame(x@result, ...)
+}
 
 #' load the data based on the species name
 #' @param species species name
@@ -98,6 +100,7 @@ setAs(from = "cellResult", to = "data.frame", def = function(from){
 }
 
 #' reverse List
+#' @method reverseList List
 #' @param lhs list with names
 #' @export
 #' @author Kai Guo

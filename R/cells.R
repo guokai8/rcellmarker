@@ -1,14 +1,14 @@
 #' cells function for cell type identification 
 #' @importFrom magrittr %>%
 #' @param x vector contains gene names 
-#' @param sepcies sepcies name
+#' @param sepcies species name
 #' @param tissue tissue type (default NULL)
 #' @param pvalue cutoff pvalue
 #' @param padj cutoff p adjust value
 #' @param keytype keytype for input genes
-#' @param minSize minimal number of genes included in significant terms
-#' @param maxSize maximum number of genes included in significant terms
-#' @param keepRich keep terms with rich factor value equal 1 or not (default: TRUE)
+#' @param minSize minimal number of genes included in significant cell type
+#' @param maxSize maximum number of genes included in significant cell type
+#' @param keepRich keep cell type with rich factor value equal 1 or not (default: TRUE)
 #' @param padj.method pvalue adjust method(default:"BH")
 #' @param sep character string used to separate the genes when concatenating
 #' @export

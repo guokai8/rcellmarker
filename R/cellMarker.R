@@ -23,8 +23,8 @@
 #' @author Kai Guo
 cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL', 
                        weight = NULL, format="long",
-                       cluster = NULL,tissue = NULL, topn = 2,
-                       padj = 0.05,
+                       cluster = NULL,tissue = NULL, topn = 3,
+                       padj = 0.05, 
                        p.adjust.methods = "BH"){
     options(warn = -1)
         cells_ <- safely(cells, otherwise = .empty_class())
@@ -43,7 +43,8 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
             x <- x %>%mutate(cellType=map(data,
                 function(y)result(cells_(y$GeneName,species=species,
                             keytype=keytype)$result))) 
-            x <- x%>%select(Cluster,cellType)%>%unnest(cellType)
+            x <- x%>%select(Cluster,cellType)%>%unnest(cellType)%>%
+                group_by(Cluster)%>%head(topn)
         }else if(type == "seurat"){
             if(is.null(weight)) weight <- 1
             x <-x%>%filter(avg_logFC >= weight,p_val_adj<padj)%>%
@@ -55,7 +56,8 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
             x <- x %>%mutate(cellType=map(data,
                     function(y)result(cells_(y$gene,species=species,
                     keytype=keytype)$result))) 
-            x <- x%>%select(cluster,cellType)%>%unnest(cellType)
+            x <- x%>%select(cluster,cellType)%>%unnest(cellType)%>%
+                group_by(cluster)%>%head(topn)
         }else{
             colnames(x)[1]<-'gene'
             if(format=="wide"){
@@ -69,6 +71,8 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
             x <- x %>%mutate(cellType=map(data,
                     function(y)result(cells_(y$gene,species=species,
                     keytype=keytype)$result))) 
+            x <- x%>%select(Cluster,cellType)%>%unnest(cellType)%>%
+                group_by(Cluster)%>%head(topn)
         }
     as.data.frame(x)
 }

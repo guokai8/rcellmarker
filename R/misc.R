@@ -108,3 +108,16 @@ reverseList<-function(lhs){
     res<-sf(as.data.frame(cbind(lhs_n,unlist(lhs))))
     return(res)
 }
+.empty_class <- function(){
+    new("cellResult",
+        result = data.frame(),
+        detail = data.frame(),
+        species = "", 
+        pvalueCutoff   = 0.05,
+        pAdjustMethod  = "BH",
+        padjCutoff   = 0.05,
+        gene           = "",
+        keytype        = "",
+        sep = ""
+    )
+}

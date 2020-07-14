@@ -24,6 +24,9 @@ cells<-function(x,species='human',keytype="SYMBOL", tissue = NULL, padj=0.05, pv
         annot <- annot[grepl(tissue,annot$tissueType,ignore.case = T),]
     }
     annot <- annot[,c(keytype,'cellType')]
+    if(sum(x%in%annot[,1])==0){
+        return(.empty_class())
+    }
     ao2gene<-sf(annot)
     ao2gene_num<-name_table(ao2gene)
     gene2ao<-sf(annot[,c(2,1)])

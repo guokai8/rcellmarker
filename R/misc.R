@@ -58,15 +58,20 @@ result.cellResult<-function(x){
 ##' @param sep cellResult object sep
 ##' @author Kai Guo
 ##' @export
-getdetail<-function(x,y,sep){
+getdetail<-function(x,y,sep=","){
     if(!is.data.frame(y)){
         y=data.frame(gene=y)
     }
     if(!("gene"%in%colnames(y))){
         y$gene=rownames(y)
     }
-    sep = x@sep
-    result <- x@result
+    if(is.data.frame(x)){
+        sep=sep
+        result <- x
+    }else{
+        sep = x@sep
+        result <- x@result
+    }
     gene<-strsplit(as.vector(x$GeneID),split=sep)
     gened<-data.frame("cellType"=rep(result$cellType,times=unlist(lapply(gene,length))),
                       "GeneID"=unlist(gene),row.names=NULL,

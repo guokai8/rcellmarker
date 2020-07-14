@@ -17,7 +17,7 @@ head(res)
 #if you have the result include the cluster information, padj value and avg_logFC named as "single"
 head(getdetail(res,single))
 ## if yuo have the results from Seurat of cellranger named as 'df'
-res <- cellMarker(df,type='seurat',species='human',keytype='SYMBOL',weight=1)
+res <- cellMarker(df,type='seurat',species='human',keytype='SYMBOL',weight=1) #weight for avg_logFC
 # or
 res <- cellMarker(df,type='cellranger',species='human',keytype='SYMBOL',weight=100)
 # or you just have two columns include cluster and gene name

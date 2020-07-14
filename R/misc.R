@@ -126,3 +126,15 @@ reverseList<-function(lhs){
         sep = ""
     )
 }
+##' get the cluster markers for each cluster
+##' @param x cellResult object or result from cellMarker
+##' @param sep character string used to separate the genes in GeneID column
+##' @author Kai Guo
+##' @export
+marker <- function(x,sep=","){
+        x <- as.data.frame(x)
+        gene<-strsplit(as.vector(x$GeneID),split=sep)
+        res <- data.frame("Cluster"= rep(rr$Cluster,times=unlist(lapply(gene,length))),
+                          "GeneID" = unlist(gene))
+        res
+}

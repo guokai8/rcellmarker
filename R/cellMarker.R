@@ -9,11 +9,14 @@
 #' @importFrom dplyr filter
 #' @importFrom dplyr group_by
 #' @importFrom dplyr mutate
+#' @importFrom dplyr top_n
 #' @param x input file for marker annotation
 #' @param species species for annotation
 #' @param type source of marker genes (seurat(default), cellranger, custom)
 #' @param keytype keytype for input genes
 #' @param weight weight threshold for marker filtering 
+#' @param format file format for user supplied data.frame(long: Cluster, gene;
+#'  wide: gene, following cluster name as column name)
 #' @param cluster clutser number (default: NULL for annotate all clusters)
 #' @param tissue tissue for annotation (default: NULL to use all tissues)
 #' @param topn the number of cell type to list fro each cluster
@@ -44,7 +47,7 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
                 function(y)result(cells_(y$GeneName,species=species,
                             keytype=keytype)$result))) 
             x <- x%>%select(Cluster,cellType)%>%unnest(cellType)%>%
-                group_by(Cluster)%>%head(topn)
+                group_by(Cluster)%>%top_n(topn,wt=Padj)
         }else if(type == "seurat"){
             if(is.null(weight)) weight <- 1
             x <-x%>%filter(avg_logFC >= weight,p_val_adj<padj)%>%
@@ -57,7 +60,7 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
                     function(y)result(cells_(y$gene,species=species,
                     keytype=keytype)$result))) 
             x <- x%>%select(cluster,cellType)%>%unnest(cellType)%>%
-                group_by(cluster)%>%head(topn)
+                group_by(cluster)%>%top_n(topn,wt=Padj)
         }else{
             colnames(x)[1]<-'gene'
             if(format=="wide"){
@@ -72,7 +75,7 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
                     function(y)result(cells_(y$gene,species=species,
                     keytype=keytype)$result))) 
             x <- x%>%select(Cluster,cellType)%>%unnest(cellType)%>%
-                group_by(Cluster)%>%head(topn)
+                group_by(Cluster)%>%top_n(topn,wt=Padj)
         }
     as.data.frame(x)
 }

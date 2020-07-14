@@ -19,9 +19,13 @@ head(getdetail(res,single))
 ## to show the markers for the cluster
 marker(res)
 ## if yuo have the results from Seurat of cellranger named as 'df'
+## default only show the top 3 cell type for each cluster
+## You can use paramater topn to change it
 res <- cellMarker(df,type='seurat',species='human',keytype='SYMBOL',weight=1) #weight for avg_logFC
 # or
 res <- cellMarker(df,type='cellranger',species='human',keytype='SYMBOL',weight=100)
+## only do the assign for cluster 1
+res <- cellMarker(df,type='cellranger',species='human',keytype='SYMBOL', cluster=1, weight=100)
 # or you just have two columns include cluster and gene name
 res <- cellMarker(df,type='custom',species='human',keytype='SYMBOL')
 ## to show the markers for each cluster

@@ -4,7 +4,7 @@
 \alias{getdetail}
 \title{get detail from with cellResult and combine with other information}
 \usage{
-getdetail(x, y, sep)
+getdetail(x, y, sep = ",")
 }
 \arguments{
 \item{x}{cellResult object from cells function}

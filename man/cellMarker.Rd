@@ -13,7 +13,7 @@ cellMarker(
   format = "long",
   cluster = NULL,
   tissue = NULL,
-  topn = 2,
+  topn = 3,
   padj = 0.05,
   p.adjust.methods = "BH"
 )
@@ -28,6 +28,9 @@ cellMarker(
 \item{keytype}{keytype for input genes}
 
 \item{weight}{weight threshold for marker filtering}
+
+\item{format}{file format for user supplied data.frame(long: Cluster, gene;
+wide: gene, following cluster name as column name)}
 
 \item{cluster}{clutser number (default: NULL for annotate all clusters)}
 

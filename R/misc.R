@@ -126,17 +126,21 @@ reverseList<-function(lhs){
         sep = ""
     )
 }
-##' get the cluster markers for each cluster
+##' get the unique cluster markers for each cluster 
 ##' @importFrom dplyr distinct
 ##' @param x cellResult object or result from cellMarker
 ##' @param sep character string used to separate the genes in GeneID column
+##' @param .unique filter duplicate gene id or not
 ##' @author Kai Guo
 ##' @export
-marker <- function(x,sep=","){
+marker <- function(x,sep=",",.unique=TRUE){
         x <- as.data.frame(x)
         gene<-strsplit(as.vector(x$GeneID),split=sep)
         res <- data.frame("Cluster"= rep(x[,1],times=unlist(lapply(gene,length))),
                           'cellType'=rep(x$cellType,times=unlist(lapply(gene,length))),
                           "GeneID" = unlist(gene))
-        res%>%distinct(GeneID,.keep_all = T)
+        if(isTRUE(.unique)){
+            res <- res%>%distinct(GeneID,.keep_all = T)
+        }
+        res
 }

@@ -29,7 +29,7 @@
 cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL', 
                        weight = NULL, format="long",
                        cluster = NULL,tissue = NULL, topn = 3,
-                       padj = 0.05, minSize=2,maxSize=500,
+                       padj = 0.05, minSize=3,maxSize=500,
                        padj.method = "BH"){
     options(warn = -1)
         cells_ <- safely(cells, otherwise = .empty_class())

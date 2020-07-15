@@ -134,7 +134,7 @@ reverseList<-function(lhs){
 marker <- function(x,sep=","){
         x <- as.data.frame(x)
         gene<-strsplit(as.vector(x$GeneID),split=sep)
-        res <- data.frame("Cluster"= rep(rr$Cluster,times=unlist(lapply(gene,length))),
+        res <- data.frame("Cluster"= rep(x[,1],times=unlist(lapply(gene,length))),
                           "GeneID" = unlist(gene))
         res
 }

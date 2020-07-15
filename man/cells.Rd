@@ -13,7 +13,6 @@ cells(
   pvalue = NULL,
   minSize = 3,
   maxSize = 500,
-  keepRich = TRUE,
   padj.method = "BH",
   sep = ","
 )
@@ -34,8 +33,6 @@ cells(
 \item{minSize}{minimal number of genes included in significant cell type}
 
 \item{maxSize}{maximum number of genes included in significant cell type}
-
-\item{keepRich}{keep cell type with rich factor value equal 1 or not (default: TRUE)}
 
 \item{padj.method}{pvalue adjust method(default:"BH")}
 

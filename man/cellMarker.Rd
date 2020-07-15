@@ -17,7 +17,7 @@ cellMarker(
   padj = 0.05,
   minSize = 2,
   maxSize = 500,
-  p.adjust.methods = "BH"
+  padj.method = "BH"
 )
 }
 \arguments{
@@ -46,7 +46,7 @@ wide: gene, following cluster name as column name)}
 
 \item{maxSize}{maximum number of genes included in significant cell type}
 
-\item{p.adjust.methods}{pvalue adjust method(default: "BH")}
+\item{padj.method}{pvalue adjust method(default: "BH")}
 }
 \description{
 assign cell type based on cell cluster results

@@ -15,7 +15,7 @@ cellMarker(
   tissue = NULL,
   topn = 3,
   padj = 0.05,
-  minSize = 2,
+  minSize = 3,
   maxSize = 500,
   padj.method = "BH"
 )

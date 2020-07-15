@@ -15,6 +15,8 @@ cellMarker(
   tissue = NULL,
   topn = 3,
   padj = 0.05,
+  minSize = 2,
+  maxSize = 500,
   p.adjust.methods = "BH"
 )
 }
@@ -39,6 +41,10 @@ wide: gene, following cluster name as column name)}
 \item{topn}{the number of cell type to list fro each cluster}
 
 \item{padj}{adjust p value threshold}
+
+\item{minSize}{minimal number of genes included in significant cell type}
+
+\item{maxSize}{maximum number of genes included in significant cell type}
 
 \item{p.adjust.methods}{pvalue adjust method(default: "BH")}
 }

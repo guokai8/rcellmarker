@@ -127,6 +127,7 @@ reverseList<-function(lhs){
     )
 }
 ##' get the cluster markers for each cluster
+##' @importFrom dplyr distinct
 ##' @param x cellResult object or result from cellMarker
 ##' @param sep character string used to separate the genes in GeneID column
 ##' @author Kai Guo
@@ -136,5 +137,5 @@ marker <- function(x,sep=","){
         gene<-strsplit(as.vector(x$GeneID),split=sep)
         res <- data.frame("Cluster"= rep(x[,1],times=unlist(lapply(gene,length))),
                           "GeneID" = unlist(gene))
-        res
+        res%>%distinct(GeneID,.keep_all = T)
 }

@@ -23,14 +23,14 @@
 #' @param padj adjust p value threshold
 #' @param minSize minimal number of genes included in significant cell type
 #' @param maxSize maximum number of genes included in significant cell type
-#' @param p.adjust.methods pvalue adjust method(default: "BH")
+#' @param padj.method pvalue adjust method(default: "BH")
 #' @export
 #' @author Kai Guo
 cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL', 
                        weight = NULL, format="long",
                        cluster = NULL,tissue = NULL, topn = 3,
                        padj = 0.05, minSize=2,maxSize=500,
-                       p.adjust.methods = "BH"){
+                       padj.method = "BH"){
     options(warn = -1)
         cells_ <- safely(cells, otherwise = .empty_class())
         if(type == 'cellranger'){
@@ -49,7 +49,7 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
                 function(y)result(cells_(y$GeneName,species=species,
                             keytype=keytype,minSize=minSize,padj=padj,
                             maxSize=maxSize,
-                            p.adjust.methods=p.adjust.methods)$result))) 
+                            padj.method=padj.method)$result))) 
             x <- x%>%select(Cluster,cellType)%>%unnest(cellType)%>%
                 group_by(Cluster)%>%top_n(topn,wt=Padj)
         }else if(type == "seurat"){
@@ -64,7 +64,7 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
                     function(y)result(cells_(y$gene,species=species,
                     keytype=keytype,minSize=minSize,padj=padj,
                     maxSize=maxSize,
-                    p.adjust.methods=p.adjust.methods)$result))) 
+                    padj.method=padj.method)$result))) 
             x <- x%>%select(cluster,cellType)%>%unnest(cellType)%>%
                 group_by(cluster)%>%top_n(topn,wt=Padj)
         }else{
@@ -81,7 +81,7 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
                     function(y)result(cells_(y$gene,species=species,
                     keytype=keytype,minSize=minSize,padj=padj,
                     maxSize=maxSize,
-                    p.adjust.methods=p.adjust.methods)$result))) 
+                    padj.method=padj.method)$result))) 
             x <- x%>%select(Cluster,cellType)%>%unnest(cellType)%>%
                 group_by(Cluster)%>%top_n(topn,wt=Padj)
         }

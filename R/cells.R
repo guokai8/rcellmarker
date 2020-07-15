@@ -10,14 +10,13 @@
 #' @param keytype keytype for input genes
 #' @param minSize minimal number of genes included in significant cell type
 #' @param maxSize maximum number of genes included in significant cell type
-#' @param keepRich keep cell type with rich factor value equal 1 or not (default: TRUE)
 #' @param padj.method pvalue adjust method(default:"BH")
 #' @param sep character string used to separate the genes when concatenating
 #' @export
 #' @author Kai Guo
 cells<-function(x,species='human',keytype="SYMBOL", tissue = NULL, padj=0.05, pvalue=NULL,
                 minSize=3,maxSize=500,
-                keepRich=TRUE,padj.method="BH",sep = ","){
+                padj.method="BH",sep = ","){
     annot <- .getdata(species=species)
     keytype <- toupper(keytype)
     if(!is.null(tissue)){
@@ -52,11 +51,7 @@ cells<-function(x,species='human',keytype="SYMBOL", tissue = NULL, padj=0.05, pv
         pvalue <- numeric()
     }
     resultFis<-resultFis[resultFis$Significant<=maxSize,]
-    if(keepRich==FALSE){
-        resultFis<-resultFis[resultFis$Significant>=minSize,]
-    }else{
-        resultFis<-resultFis[resultFis$Significant>=minSize|(resultFis$Annotated/resultFis$Significant)==1,]
-    }
+    resultFis<-resultFis[resultFis$Significant>=minSize,]
     rownames(resultFis)<-resultFis$cellType
     gene<-strsplit(as.vector(resultFis$GeneID),split=sep)
        # names(gene)<-resultFis$cellType

@@ -136,6 +136,7 @@ marker <- function(x,sep=","){
         x <- as.data.frame(x)
         gene<-strsplit(as.vector(x$GeneID),split=sep)
         res <- data.frame("Cluster"= rep(x[,1],times=unlist(lapply(gene,length))),
+                          'cellType'=rep(x$cellType,times=unlist(lapply(gene,length))),
                           "GeneID" = unlist(gene))
         res%>%distinct(GeneID,.keep_all = T)
 }

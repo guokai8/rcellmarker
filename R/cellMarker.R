@@ -51,7 +51,7 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
                             maxSize=maxSize,
                             padj.method=padj.method)$result))) 
             x <- x%>%select(Cluster,cellType)%>%unnest(cellType)%>%
-                group_by(Cluster)%>%top_n(topn,wt=Padj)
+                group_by(Cluster)%>%top_n(-topn,wt=Padj)
         }else if(type == "seurat"){
             if(is.null(weight)) weight <- 1
             x <-x%>%filter(avg_logFC >= weight,p_val_adj<padj)%>%
@@ -66,7 +66,7 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
                     maxSize=maxSize,
                     padj.method=padj.method)$result))) 
             x <- x%>%select(cluster,cellType)%>%unnest(cellType)%>%
-                group_by(cluster)%>%top_n(topn,wt=Padj)
+                group_by(cluster)%>%top_n(-topn,wt=Padj)
         }else{
             colnames(x)[1]<-'gene'
             if(format=="wide"){
@@ -83,7 +83,7 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
                     maxSize=maxSize,
                     padj.method=padj.method)$result))) 
             x <- x%>%select(Cluster,cellType)%>%unnest(cellType)%>%
-                group_by(Cluster)%>%top_n(topn,wt=Padj)
+                group_by(Cluster)%>%top_n(-topn,wt=Padj)
         }
     as.data.frame(x)
 }

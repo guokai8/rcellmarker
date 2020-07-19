@@ -97,9 +97,12 @@ as.data.frame.cellResult <- function(x, ...) {
     if(species=='human'){
         data(human)
         dat <- humancells
-    }else{
+    }else if(species == "mouse"){
         data(mouse)
         dat <- mousecells
+    }else{
+        data(rat)
+        dat<-ratcells
     }
     dat
 }
@@ -143,4 +146,13 @@ marker <- function(x,sep=",",.unique=TRUE){
             res <- res%>%distinct(GeneID,.keep_all = T)
         }
         res
+}
+#' combine list together with name as one column
+.add.list<-function(x){
+    xname<-names(x)
+    cluster<-rep(xname,times=unlist(lapply(x, nrow)))
+    rr <- do.call(rbind,x)
+    res<- cbind(cluster,rr)
+    rownames(res)<-NULL
+    res
 }

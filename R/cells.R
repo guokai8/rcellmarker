@@ -18,7 +18,7 @@ cells<-function(x,species='human',keytype="SYMBOL", tissue = NULL, padj=0.05, pv
                 minSize=3,maxSize=500,
                 padj.method="BH",sep = ","){
     annot <- .getdata(species=species)
-    annot <- na.omit(annot)
+    #annot <- na.omit(annot)
     keytype <- toupper(keytype)
     if(!is.null(tissue)){
         annot <- annot[grepl(tissue,annot$tissueType,ignore.case = T),]

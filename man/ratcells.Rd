@@ -19,7 +19,7 @@ A list of data frame with five columns individually:
 ratcells
 }
 \description{
-mouse cell markers for cell type identification
+rat cell markers for cell type identification
 }
 \examples{
 data(rat)

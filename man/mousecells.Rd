@@ -12,6 +12,7 @@ A list of data frame with five columns individually:
 \item{tissueType}{tissue Type}
 \item{ENTREZID}{ENTREZID gene IDs}
 \item{REFSEQ}{REFSEQ gene IDs}
+\item{ENSEMBL}{ENSEMBL gene IDs}
 }
 }
 \usage{

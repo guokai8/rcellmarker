@@ -30,7 +30,7 @@
 ##' head(mousecells)
 "mousecells"
 ##' @title rat
-##' @description mouse cell markers for cell type identification
+##' @description rat cell markers for cell type identification
 ##' @format A list of data frame with five columns individually:
 ##' \describe{
 ##' \item{SYMBOL}{SYMBOL gene IDs}

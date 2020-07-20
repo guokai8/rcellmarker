@@ -19,7 +19,7 @@ head(getdetail(res,single))
 ## to show the markers for the cluster
 marker(res)
 ## if yuo have the results from Seurat of cellranger named as 'df'
-## default only show the top 3 cell type for each cluster
+## default only show the top 3 cell type for each cluster and you can also set the minSize which stand for minimal genes should be include in the celltype 
 ## You can use paramater topn to change it
 res <- cellMarker(df,type='seurat',species='human',keytype='SYMBOL',weight=1) #weight for avg_logFC
 # or

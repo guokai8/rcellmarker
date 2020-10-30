@@ -54,8 +54,13 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
                 group_by(Cluster)%>%top_n(-topn,wt=Padj)
         }else if(type == "seurat"){
             if(is.null(weight)) weight <- 1
+          if("avg_logFC"%in%colnames(x)){
             x <-x%>%filter(avg_logFC >= weight,p_val_adj<padj)%>%
                 select(cluster,gene)%>%group_by(cluster)%>%nest()
+            }else{
+            x <-x%>%filter(avg_log2FC >= weight,p_val_adj<padj)%>%
+                select(cluster,gene)%>%group_by(cluster)%>%nest()
+            }
             if(!is.null(cluster)){
                 cl <- cluster
                 x <- x%>%filter(cluster%in%cl)

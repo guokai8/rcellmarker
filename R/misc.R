@@ -93,9 +93,6 @@ as.data.frame.cellResult <- function(x, ...) {
 #' @param species species name
 #' @author Kai Guo
 .getdata <- function(species, db) {
-  if (!(db %in% c("default", "celltax"))) {
-    stop("Invalid value for 'db'. It must be either 'default' or 'celltax'.")
-  }
   if(db == "default") {
     species = tolower(species)
     if (species == 'human') {

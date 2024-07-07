@@ -31,6 +31,9 @@ cellMarker <- function(x, type = 'seurat', db="default", species="human", keytyp
                        cluster = NULL,tissue = NULL, topn = 3,
                        padj = 0.05, minSize=3,maxSize=500,
                        padj.method = "BH"){
+  if (!(db %in% c("default", "celltax"))) {
+      stop("Invalid value for 'db'. It must be either 'default' or 'celltax'.")
+  }
     options(warn = -1)
         cells_ <- safely(cells, otherwise = .empty_class())
         if(type == 'cellranger'){

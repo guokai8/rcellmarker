@@ -26,7 +26,7 @@
 #' @param padj.method pvalue adjust method(default: "BH")
 #' @export
 #' @author Kai Guo
-cellMarker <- function(x, type = 'seurat', db=NULL, species="human", keytype = 'SYMBOL', 
+cellMarker <- function(x, type = 'seurat', db="default", species="human", keytype = 'SYMBOL', 
                        weight = NULL, format="long",
                        cluster = NULL,tissue = NULL, topn = 3,
                        padj = 0.05, minSize=3,maxSize=500,

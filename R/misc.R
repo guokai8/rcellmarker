@@ -92,17 +92,27 @@ as.data.frame.cellResult <- function(x, ...) {
 #' load the data based on the species name
 #' @param species species name
 #' @author Kai Guo
-.getdata <-function(species){
-    species = tolower(species)
-    if(species=='human'){
-        data(human)
-        dat <- humancells
-    }else if(species == "mouse"){
-        data(mouse)
-        dat <- mousecells
-    }else{
-        data(rat)
-        dat<-ratcells
+.getdata <-function(species, db){
+    if(is.null(db)) {
+        species = tolower(species)
+        if(species=='human'){
+            data(human)
+            dat <- humancells
+        }else if(species == "mouse"){
+            data(mouse)
+            dat <- mousecells
+        }else{
+            data(rat)
+            dat<-ratcells
+        }
+    }else {
+        if(species=='human'){
+            data(celltaxonomy_human)
+            dat <- celltaxonomy_human
+        }else if(species == "mouse"){
+           data(celltaxonomy_mouse)
+           dat <- celltaxonomy_mouse
+        }
     }
     dat
 }

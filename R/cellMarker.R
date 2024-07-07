@@ -26,7 +26,7 @@
 #' @param padj.method pvalue adjust method(default: "BH")
 #' @export
 #' @author Kai Guo
-cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL', 
+cellMarker <- function(x, type = 'seurat', db=NULL, species="human", keytype = 'SYMBOL', 
                        weight = NULL, format="long",
                        cluster = NULL,tissue = NULL, topn = 3,
                        padj = 0.05, minSize=3,maxSize=500,
@@ -48,7 +48,7 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
             x <- x %>%mutate(cellType=map(data,
                 function(y)result(cells_(y$GeneName,species=species,
                             keytype=keytype,minSize=minSize,padj=padj,
-                            maxSize=maxSize,
+                            maxSize=maxSize,db=db,
                             padj.method=padj.method)$result))) 
             x <- x%>%select(Cluster,cellType)%>%unnest(cellType)%>%
                 group_by(Cluster)%>%top_n(-topn,wt=Padj)
@@ -68,7 +68,7 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
             x <- x %>%mutate(cellType=map(data,
                     function(y)result(cells_(y$gene,species=species,
                     keytype=keytype,minSize=minSize,padj=padj,
-                    maxSize=maxSize,
+                    maxSize=maxSize,db=db,
                     padj.method=padj.method)$result))) 
             x <- x%>%select(cluster,cellType)%>%unnest(cellType)%>%
                 group_by(cluster)%>%top_n(-topn,wt=Padj)
@@ -85,7 +85,7 @@ cellMarker <- function(x, type = 'seurat', species="human", keytype = 'SYMBOL',
             x <- x %>%mutate(cellType=map(data,
                     function(y)result(cells_(y$gene,species=species,
                     keytype=keytype,minSize=minSize,padj=padj,
-                    maxSize=maxSize,
+                    maxSize=maxSize,db=db,
                     padj.method=padj.method)$result))) 
             x <- x%>%select(Cluster,cellType)%>%unnest(cellType)%>%
                 group_by(Cluster)%>%top_n(-topn,wt=Padj)

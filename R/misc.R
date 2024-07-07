@@ -107,11 +107,11 @@ as.data.frame.cellResult <- function(x, ...) {
         }
     }else {
         if(species=='human'){
-            data(celltaxonomy_human)
-            dat <- celltaxonomy_human
+            data(human_celltaxonomy)
+            dat <- humancelltaxonomycells
         }else if(species == "mouse"){
-           data(celltaxonomy_mouse)
-           dat <- celltaxonomy_mouse
+           data(mouse_celltaxonomy)
+           dat <- mousecelltaxonomycells
         }
     }
     dat

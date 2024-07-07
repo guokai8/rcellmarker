@@ -92,30 +92,38 @@ as.data.frame.cellResult <- function(x, ...) {
 #' load the data based on the species name
 #' @param species species name
 #' @author Kai Guo
-.getdata <-function(species, db){
-    if(is.null(db)) {
-        species = tolower(species)
-        if(species=='human'){
-            data(human)
-            dat <- humancells
-        }else if(species == "mouse"){
-            data(mouse)
-            dat <- mousecells
-        }else{
-            data(rat)
-            dat<-ratcells
-        }
-    }else {
-        if(species=='human'){
-            data(human_celltaxonomy)
-            dat <- humancelltaxonomycells
-        }else if(species == "mouse"){
-           data(mouse_celltaxonomy)
-           dat <- mousecelltaxonomycells
-        }
+.getdata <- function(species, db) {
+  if (!(db %in% c("default", "celltax"))) {
+    stop("Invalid value for 'db'. It must be either 'default' or 'celltax'.")
+  }
+  if(db == "default") {
+    species = tolower(species)
+    if (species == 'human') {
+      data(human)
+      dat <- humancells
+    } else if (species == "mouse") {
+      data(mouse)
+      dat <- mousecells
+    } else {
+      data(rat)
+      dat <- ratcells
     }
-    dat
+  } else if(db == "celltax") {
+    if (species == 'human') {
+      data(human_celltaxonomy)
+      dat <- humancelltaxonomycells
+    } else if (species == "mouse") {
+      data(mouse_celltaxonomy)
+      dat <- mousecelltaxonomycells
+    } else {
+      data(rat)
+      dat <- ratcells
+    }
+  } 
+  
+  dat
 }
+
 
 #' reverse List
 #' @param lhs list with names

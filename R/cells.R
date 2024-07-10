@@ -14,10 +14,10 @@
 #' @param sep character string used to separate the genes when concatenating
 #' @export
 #' @author Kai Guo
-cells<-function(x,species='human',keytype="SYMBOL", tissue = NULL, padj=0.05, pvalue=NULL,
+cells<-function(x,species='human',db='default',keytype="SYMBOL", tissue = NULL, padj=0.05, pvalue=NULL,
                 minSize=3,maxSize=500,
                 padj.method="BH",sep = ","){
-    annot <- .getdata(species=species)
+    annot <- .getdata(species=species,db=db)
     annot <- na.omit(annot)
     keytype <- toupper(keytype)
     if(!is.null(tissue)){
